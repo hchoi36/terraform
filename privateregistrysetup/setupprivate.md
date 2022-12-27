@@ -81,7 +81,4 @@ If you want to change the port the registry listens on within the container, you
 
 
 
-
-
-
  
