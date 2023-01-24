@@ -1,7 +1,7 @@
 def strangler_images = ["legacy-edge","customer-service","edge-service","profile-web","discovery-service","config-service","user-service","profile-service"]
 
 pipeline {
-    agent {label 'workernode2'}
+    agent {label 'workernode1'}
     
 
     environment {
