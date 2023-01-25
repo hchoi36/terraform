@@ -5,9 +5,11 @@
 # ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
 FROM openjdk:8-jre
+VOLUME /tmp
+ADD account-service-0.0.1-SNAPSHOT.jar app.jar
 MAINTAINER David Flemström <dflemstr@spotify.com>
-
-ENTRYPOINT ["/usr/bin/java", "-jar", "/usr/share/myservice/myservice.jar"]
+RUN bash -c 'touch /app.jar'
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
 # Add Maven dependencies (not shaded into the artifact; Docker-cached)
 ADD target/lib           /usr/share/myservice/lib
