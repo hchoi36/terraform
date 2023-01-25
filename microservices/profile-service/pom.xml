@@ -146,7 +146,7 @@
             <plugin>
   <groupId>com.spotify</groupId>
   <artifactId>docker-maven-plugin</artifactId>
-  <version>VERSION GOES HERE</version>
+<!--   <version>VERSION GOES HERE</version> -->
   <executions>
     <execution>
       <id>build-image</id>
