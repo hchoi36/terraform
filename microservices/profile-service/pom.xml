@@ -148,21 +148,26 @@
   <groupId>com.spotify</groupId>
   <artifactId>dockerfile-maven-plugin</artifactId>
   <executions>
-    <execution>
-      <id>default</id>
-      <goals>
-        <goal>build</goal>
-        <goal>push</goal>
-      </goals>
-    </execution>
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
   </executions>
-  <configuration>
-    <repository>spotify/foobar</repository>
-    <tag>${project.version}</tag>
-    <buildArgs>
-      <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-    </buildArgs>
-  </configuration>
+ <configuration>
+                    <imageName>${project.artifactId}</imageName>
+                    <baseImage>java</baseImage>
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
 </plugin>
                  
         </plugins>
