@@ -78,6 +78,13 @@
                     <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
                     <clearOutputDir>false</clearOutputDir>
                 </configuration>
+                     <dependencies>
+                    <dependency>
+                           <groupId>javax.activation</groupId>
+                           <artifactId>activation</artifactId>
+                           <version>1.1.1</version>
+                    </dependency>
+                  </dependencies>
             </plugin>
             <plugin>
                 <executions>
