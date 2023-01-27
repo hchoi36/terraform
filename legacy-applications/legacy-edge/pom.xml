@@ -115,7 +115,7 @@
                     <clearOutputDir>false</clearOutputDir>
                 </configuration>
             </plugin>
-            <plugin>
+<!--             <plugin>
                 <executions>
                     <execution>
                         <id>build-image</id>
@@ -140,7 +140,7 @@
                         </resource>
                     </resources>
                 </configuration>
-            </plugin>
+            </plugin> -->
         </plugins>
     </build>
 
