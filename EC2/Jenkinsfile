@@ -2,7 +2,8 @@ def TF = "EC2"
 
 pipeline {
     agent {
-        label 'workernode2'
+        #label 'workernode2'
+        label 'worker_terraform'
     }
     tools {
         terraform 'tf_test'
@@ -12,7 +13,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Get some code from a GitHub repository
-                checkout([$class: 'GitSCM', branches: [[name: '*/AD-6']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/hchoi36/terraform.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/AD-6']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/xiaotinglian/cloud-native-microservice-strangler.git']]])
         
             }
         }  
