@@ -4,7 +4,7 @@ resource "aws_instance" "ec2" {
   key_name = "devops_lab"
   #vpc_security_group_ids = [sg-0237c70dcff4cd7f1]
 
-  user_data = << EOF
+  user_data = <<-EOF
 		#! /bin/bash
     sudo yum update
     sudo yum install -y java-11-openjdk
