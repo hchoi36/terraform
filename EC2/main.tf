@@ -8,7 +8,7 @@ resource "aws_instance" "ec2" {
 		#! /bin/bash
     sudo yum update
     sudo yum install -y java-11-openjdk
-		sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo --no-check-certificate
+    sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo --no-check-certificate
     sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
     sudo yum install jenkins -y
     sudo systemctl start jenkins
