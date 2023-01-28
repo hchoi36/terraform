@@ -2,7 +2,7 @@ def TF = "EC2"
 
 pipeline {
     agent {
-        #label 'workernode2'
+        //label 'workernode2'
         label 'worker_terraform'
     }
     tools {
