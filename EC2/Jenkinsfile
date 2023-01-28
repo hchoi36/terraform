@@ -1,0 +1,68 @@
+def TF = "EC2"
+
+pipeline {
+    agent {
+        label 'workernode2'
+    }
+    tools {
+        terraform 'tf_test'
+        }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Get some code from a GitHub repository
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/hchoi36/terraform.git']]])
+        
+            }
+        }  
+
+        
+        stage('terraform') {
+            steps {
+                dir("${WORKSPACE}/${TF}") {
+                sh 'ls'
+                sh 'pwd'
+                sh 'terraform init'
+                }
+            }
+        }
+        
+        stage("plan") {
+          steps {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws_credentials', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                    dir("${WORKSPACE}/${TF}") {
+                    sh 'terraform plan'
+                    }
+            }
+          }
+        }
+        
+        stage("apply") {
+          steps {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws_credentials', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                    dir("${WORKSPACE}/${TF}") {
+                    sh 'terraform apply --auto-approve'
+                    }
+            }
+          }
+        }
+      
+        stage("destroy") {
+          input {
+            message "Ready to destroy?"
+            ok "Yes"
+          }
+          
+          steps {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws_credentials', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                    dir("${WORKSPACE}/${TF}") {
+                    sh 'terraform destroy --auto-approve'
+                    }
+            }
+          }
+        }
+      
+    }
+}
+          
