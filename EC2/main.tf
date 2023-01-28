@@ -5,9 +5,8 @@ resource "aws_instance" "ec2" {
   #vpc_security_group_ids = [sg-0237c70dcff4cd7f1]
 
   user_data = <<-EOF
-		#! /bin/bash
-    sudo yum update
-    sudo yum install -y java-11-openjdk
+		#!/bin/bash
+    sudo yum update -y
     sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo --no-check-certificate
     sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
     sudo yum install jenkins -y
