@@ -1,4 +1,4 @@
-def TF = "EC2"
+def TF = "ECR"
 
 pipeline {
     agent {
