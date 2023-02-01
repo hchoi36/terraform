@@ -76,7 +76,7 @@ sudo cat /etc/crictl.yaml
 
 
 
-**CMDs for management **
+**CMDs for management**
 
 ```bash
 kubectl get nodes/pods/service
