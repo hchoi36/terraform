@@ -3,11 +3,11 @@ module "eks" {
    version         = "17.24.0"
   cluster_name     = "Antra-Kubernetes"
   cluster_version  = "1.24"
-  #subnets          = module.vpc.public_subnets
+  subnets          = ["subnet-0f78a8893b01ab3b0"]
   
-  #vpc_id = module.vpc.vpc_id
+  vpc_id = "vpc-071c9a3420aa5120a"
    
-  write_kubeconfig = true
+  #write_kubeconfig = true
   
   worker_groups = [
     {
