@@ -2,12 +2,10 @@ module "eks" {
   source           = "terraform-aws-modules/eks/aws"
    version         = "17.24.0"
   cluster_name     = "Antra-Kubernetes"
-  cluster_version  = "1.24"
+  cluster_version  = "1.19"
   subnets          = ["subnet-0f78a8893b01ab3b0","subnet-0e0112694839b9e7a"]
   
   vpc_id = "vpc-071c9a3420aa5120a"
-   
-  #write_kubeconfig = true
   
   worker_groups = [
     {
