@@ -54,7 +54,7 @@ ufw disable
 Firewall stopped and disabled on system startup
 ```
 
-Load this twoo modules 
+Load this two modules 
 
 ```bash
 modprobe overlay
@@ -250,6 +250,15 @@ NAME           STATUS   ROLES           AGE   VERSION
 ubuntu-node1   Ready    control-plane   29m   v1.24.1
 ```
 
+**Auto-completion for kubectl**.
+
+```bash
+sudo apt-get install bash-completion -y                       # install bash-completion
+<exit and log back in>
+source <(kubectl completion bash)
+echo "source <(kubectl completion bash)" >> $HOME/.bashrc     # /home/<username> for ubuntu
+```
+
 
 
 ## Possible issues
@@ -275,16 +284,3 @@ strace -eopenat kubectl version
 ```bash
 journalctl -xeu kubelet
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
